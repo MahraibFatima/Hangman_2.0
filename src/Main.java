@@ -2,30 +2,31 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception{
-        int boardWidth= 600;
-        int boardHeight= 600;
 
-        JFrame frame= new JFrame("Hangman");
-        frame.setVisible(true);
-        frame.setSize(boardWidth, boardHeight);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public static void main(String[] args) {
 
-        ImageIcon originalIcon = new ImageIcon("C:/Users/PMLS/Documents/imp-docs/raw/pic/luca-micheli-ruWkmt3nU58-unsplash.jpg");
-        Image scaledImage = originalIcon.getImage().getScaledInstance(boardWidth, boardHeight, Image.SCALE_SMOOTH);
-        JLabel background = new JLabel(new ImageIcon(scaledImage));
+        final int WIDTH = 800;
+        final int HEIGHT = 600;
+        final String TITLE = "Hangman";
+        final ImageIcon backgroundImg = new ImageIcon("img/start_screen_bg.gif");
 
-        frame.setContentPane(background);
-        background.setLayout(new BorderLayout());
-        
-        Hangman hangman = new Hangman(boardWidth, boardHeight);
-        background.add(hangman);
+        JFrame screen = new JFrame();
+        CardLayout cardLayout = new CardLayout();
+        screen.setSize(new Dimension(WIDTH, HEIGHT));
+        screen.setTitle(TITLE);
+        screen.setLocationRelativeTo(null);
+        screen.setResizable(false);
+        //screen.setDefaultCloseOperation(screen.EXIT_ON_CLOSE);
 
-        frame.setVisible(true);
-        hangman.requestFocus();
+        JPanel container = new JPanel();
+        container.setLayout(cardLayout);
+        screen.add(container);
 
+
+        StartPanel startPanel = new StartPanel(WIDTH, HEIGHT, backgroundImg, container, cardLayout);
+
+        container.add(startPanel, "1");
+
+        screen.setVisible(true);
     }
-
 }
