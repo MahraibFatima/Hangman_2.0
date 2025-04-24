@@ -2,12 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Hangman extends JPanel implements ActionListener{
+public class HangmanGame extends JPanel implements ActionListener{
     int boardWidth;
     int boardHeight;
     Image background= new ImageIcon("img/chalkboard.gif").getImage();
 
-    Hangman(int boardWidth, int boardHeight){
+    HangmanGame(int boardWidth, int boardHeight){
         this.boardWidth= boardWidth;
         this.boardHeight= boardHeight;
         KeyBoard keyBoard= new KeyBoard();
