@@ -1,6 +1,6 @@
 ## Abstract
 
-This is an advanced GUI-based Hangman game built as an enhancement to the earlier [CLI-based Hangman project](https://github.com/MahraibFatima/HangMan). 
+This is an advanced GUI-based HangmanGame game built as an enhancement to the earlier [CLI-based HangmanGame project](https://github.com/MahraibFatima/HangMan). 
 The game introduces a visually engaging user interface, making it more interactive and enjoyable for players. 
 Players can guess letters to complete a hidden word, with each incorrect guess resulting in a visual update to the hangman drawing.
 
