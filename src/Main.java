@@ -24,8 +24,9 @@ public class Main {
 
 
         StartPanel startPanel = new StartPanel(WIDTH, HEIGHT, backgroundImg, container, cardLayout);
-
+        //HangmanGame hangman= new HangmanGame(WIDTH, HEIGHT);
         container.add(startPanel, "1");
+        //container.add(hangman);
 
         screen.setVisible(true);
     }
