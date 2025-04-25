@@ -10,7 +10,7 @@ public class Main {
         final int HEIGHT = 600;
         final String TITLE = "Hangman";
         final ImageIcon chalkBoard = new ImageIcon("img/chalkboard.gif");
-        final ImageIcon start_screen_hangman= new ImageIcon("img/start_screen_bg.gif");
+        final ImageIcon hangman_screen= new ImageIcon("img/start_screen_bg.gif");
 
         JFrame screen = new JFrame();
         CardLayout cardLayout = new CardLayout();
@@ -25,12 +25,15 @@ public class Main {
         screen.add(container);
 
         //start screen
-        StartPanel startPanel = new StartPanel(WIDTH, HEIGHT, start_screen_hangman, container, cardLayout);
-        container.add(startPanel, "1");
-
-        //players input screen
+//        StartPanel startPanel = new StartPanel(WIDTH, HEIGHT, hangman_screen, container, cardLayout);
+//        container.add(startPanel, "1");
+//
+//        //players input screen
         playersInputScreen playersInput = new playersInputScreen(WIDTH, HEIGHT, chalkBoard, container, cardLayout);
         container.add(playersInput, "2");
+
+        GameOverScreen gameOver= new GameOverScreen(WIDTH, HEIGHT, hangman_screen, container, cardLayout);
+        container.add(gameOver, "3");
 
         //HangmanGame hangman= new HangmanGame(WIDTH, HEIGHT);
         //container.add(hangman);
