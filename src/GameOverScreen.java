@@ -4,60 +4,57 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameOverScreen extends JPanel implements ActionListener {
-    int score= -1;
-    GameOverScreen(int boardWidth, int boardHeight, ImageIcon backgroundImg, JPanel container, CardLayout cardLayout){
+    private int score;
+    int buttonWidth = 100;
+    int buttonHeight = 50;
+
+    public GameOverScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout, int finalScore) {
+        this.score = finalScore;
         this.setLayout(new BorderLayout());
 
         // Background panel setup
         JPanel gameOverPanel = getJPanelBg(backgroundImg);
 
         // Input fields
-        JPanel input_fields = getJPanel_input();
-        gameOverPanel.add(input_fields, BorderLayout.NORTH);
+        JPanel inputFields = getJPanelInput(container,cardLayout);
+        gameOverPanel.add(inputFields, BorderLayout.NORTH);
 
         this.add(gameOverPanel, BorderLayout.CENTER);
-
     }
 
-    private JPanel getJPanel_input() {
-        JPanel input_fields = new JPanel(new GridLayout(3, 1, 10, 10));
-        input_fields.setOpaque(false);
-        input_fields.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    private JPanel getJPanelInput(JPanel container, CardLayout cardLayout) {
+        JPanel inputFields = new JPanel(new GridLayout(3, 1, 10, 10));
+        inputFields.setOpaque(false);
+        inputFields.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel inputNames = new JLabel("Game Over", SwingConstants.CENTER);
-        inputNames.setForeground(Color.RED);
-        Font font = new Font("Courier", Font.BOLD, 20);
-        inputNames.setFont(font);
+        JLabel titleLabel = new JLabel("Game Over", SwingConstants.CENTER);
+        titleLabel.setForeground(Color.RED);
+        titleLabel.setFont(new Font("Courier", Font.BOLD, 20));
 
-        JLabel player1_label = new JLabel("Your Score is: ", SwingConstants.CENTER);
-        JLabel playerScore= new JLabel();
-        playerScore.setText(String.valueOf(score));
-        playerScore.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel scoreLabel = new JLabel("Your Score is:", SwingConstants.CENTER);
+        scoreLabel.setFont(new Font("Courier", Font.PLAIN, 16));
 
+        PlayButton scoreValue = new PlayButton(String.valueOf(score), -(buttonWidth + 20), HEIGHT - (buttonHeight * 3), buttonWidth, buttonHeight, container, cardLayout);
+        scoreValue.setVerticalAlignment(SwingConstants.CENTER);
+        scoreValue.setFont(new Font("Courier", Font.BOLD, 18));
+        scoreValue.setForeground(Color.BLACK);
 
-        input_fields.add(inputNames);
-        input_fields.add(player1_label);
-        input_fields.add(playerScore);
-        return input_fields;
-    }
+        inputFields.add(titleLabel);
+        inputFields.add(scoreLabel);
+        inputFields.add(scoreValue);
 
-    private static JTextField getJTextField() {
-        JTextField field = new JTextField(5);
-        field.setForeground(Color.BLACK);
-        field.setOpaque(true);
-        field.setFont(new Font("SansSerif", Font.BOLD, 20));
-        field.setBackground(new Color(255, 255, 255, 200));
-        return field;
+        return inputFields;
     }
 
     private static JPanel getJPanelBg(ImageIcon backgroundImg) {
-        JPanel gameOverPanel = new GameOverScreen.BackgroundPanel(backgroundImg.getImage());
+        JPanel gameOverPanel = new BackgroundPanel(backgroundImg.getImage());
         gameOverPanel.setLayout(new BorderLayout());
         return gameOverPanel;
     }
 
     static class BackgroundPanel extends JPanel {
         private final Image background;
+
         public BackgroundPanel(Image background) {
             this.background = background;
         }
@@ -73,3 +70,4 @@ public class GameOverScreen extends JPanel implements ActionListener {
 
     }
 }
+
