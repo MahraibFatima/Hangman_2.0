@@ -42,23 +42,30 @@ public class KeyBoard extends JButton {
         keyboardPanel.add(row3);
     }
 
-    public void resetKeyboard() {
-
-        for (KeyBoardButtons button : this.buttons) {
-            button.setEnabled(true);
-            button.setBackground(null);
-        }
-    }
 
     public void disableKeyboard() {
-
         for (KeyBoardButtons button : this.buttons) {
             button.setEnabled(false);
         }
     }
 
-    public KeyBoardButtons[] getButtons() {
+    private KeyBoardButtons[] getButtons() {
 
         return this.buttons;
+    }
+}
+
+class KeyBoardButtons extends JButton {
+    private final char value;
+
+    public KeyBoardButtons(char value) {
+        this.value = value;
+
+        this.setFocusable(false);
+        this.setText(String.valueOf(this.value).toUpperCase());
+    }
+
+    public char getValue() {
+        return this.value;
     }
 }
