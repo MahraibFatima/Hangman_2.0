@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class TextStyle {
+public class TextFieldStyle {
     public static JTextField getJTextField() {
         JTextField field = new JTextField(5);
         field.setForeground(Color.BLACK);
