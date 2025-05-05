@@ -8,7 +8,7 @@ public class playersInputScreen extends JPanel implements ActionListener {
         this.setLayout(new BorderLayout());
 
         // Background panel setup
-        JPanel backgroundWithKeyboard = getJPanelBg(backgroundImg);
+        JPanel backgroundWithKeyboard = Background.setBgWithKeyBoard(backgroundImg);
 
         // Input fields
         JPanel input_fields = getJPanel_input();
@@ -51,33 +51,6 @@ public class playersInputScreen extends JPanel implements ActionListener {
         return field;
     }
 
-    private static JPanel getJPanelBg(ImageIcon backgroundImg) {
-        JPanel backgroundWithKeyboard = new BackgroundPanel(backgroundImg.getImage());
-        backgroundWithKeyboard.setLayout(new BorderLayout());
-
-        JPanel keyboardPanel = new JPanel();
-        keyboardPanel.setOpaque(false);
-
-        KeyBoard keyBoard = new KeyBoard();
-        keyBoard.displayButtons(keyboardPanel);
-
-        backgroundWithKeyboard.add(keyboardPanel, BorderLayout.SOUTH);
-        return backgroundWithKeyboard;
-    }
-
-    static class BackgroundPanel extends JPanel {
-        private final Image background;
-
-        public BackgroundPanel(Image background) {
-            this.background = background;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
