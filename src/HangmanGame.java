@@ -47,7 +47,6 @@ public class HangmanGame extends JPanel implements ActionListener {
 
         return guessWord_panel;
     }
-
     private static JPanel imageToEast() {
         ImageIcon img = new ImageIcon("img/Gallows6.gif");
 
@@ -57,6 +56,23 @@ public class HangmanGame extends JPanel implements ActionListener {
         imagePanel.add(imageLabel);
 
         return imagePanel;
+    }
+    private static JPanel guessWord_panel() {
+        JPanel guessWord_panel = new JPanel(new GridLayout(2, 1, 10, 10));
+        guessWord_panel.setOpaque(false);
+        guessWord_panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        Font font = new Font("Courier", Font.BOLD, 20);
+        JLabel guessWord_label= new JLabel("Guess Word ", SwingConstants.LEFT);
+        guessWord_label.setFont(font);
+
+
+        JTextField guessWord_field = TextFieldStyle.getJTextField();
+
+        guessWord_panel.add(guessWord_label);
+        guessWord_panel.add(guessWord_field);
+
+        return guessWord_panel;
     }
     private JPanel createCenterPanel() {
         // --- LEFT SIDE: Chances Left ---
@@ -83,23 +99,7 @@ public class HangmanGame extends JPanel implements ActionListener {
 
         return mainCenterPanel;
     }
-    private static JPanel guessWord_panel() {
-        JPanel guessWord_panel = new JPanel(new GridLayout(2, 1, 10, 10));
-        guessWord_panel.setOpaque(false);
-        guessWord_panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        Font font = new Font("Courier", Font.BOLD, 20);
-        JLabel guessWord_label= new JLabel("Guess Word ", SwingConstants.LEFT);
-        guessWord_label.setFont(font);
-
-
-        JTextField guessWord_field = TextFieldStyle.getJTextField();
-
-        guessWord_panel.add(guessWord_label);
-        guessWord_panel.add(guessWord_field);
-
-        return guessWord_panel;
-    }
 
     @Override
     protected void paintComponent(Graphics g) {
