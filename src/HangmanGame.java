@@ -26,7 +26,6 @@ public class HangmanGame extends JPanel implements ActionListener {
         // Add to main panel
 
         this.add(backgroundWithKeyboard, BorderLayout.CENTER);
-
     }
 
     private static JPanel chances_panel(){
