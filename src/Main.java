@@ -34,17 +34,16 @@ public class Main {
 //        playersInputScreen playersInput = new playersInputScreen(WIDTH, HEIGHT, chalkBoard, container, cardLayout);
 //        container.add(playersInput, "2");
 
-        GameOverScreen gameOver= new GameOverScreen(hangman_without_text, container, cardLayout, finalScore);
-        container.add(gameOver, "3");
+        //Hangman main game screen
+        HangmanGame hangman= new HangmanGame(chalkBoard);
+        container.add(hangman, "3");
 
-        //HangmanGame hangman= new HangmanGame(WIDTH, HEIGHT);
-        //container.add(hangman);
-
-        //players names input screen
+        //game over screen
+//        GameOverScreen gameOver= new GameOverScreen(hangman_without_text, container, cardLayout, finalScore);
+//        container.add(gameOver, "4");
 
 
         cardLayout.show(container, "1");
-
 
         screen.setVisible(true);
     }
