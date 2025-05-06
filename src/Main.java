@@ -31,7 +31,7 @@ public class Main {
         container.add(startPanel, "1");
 
         //players input screen
-        playersInputScreen playersInput = new playersInputScreen(WIDTH, HEIGHT, chalkBoard, container, cardLayout);
+        playersInputScreen playersInput = new playersInputScreen(chalkBoard, container, cardLayout);
         container.add(playersInput, "2");
 
         //Hangman main game screen
