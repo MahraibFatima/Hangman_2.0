@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class playersInputScreen extends JPanel implements ActionListener {
 
-    public playersInputScreen(int boardWidth, int boardHeight, ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
+    public playersInputScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
         this.setLayout(new BorderLayout());
 
         // Background panel setup
@@ -14,11 +14,30 @@ public class playersInputScreen extends JPanel implements ActionListener {
         JPanel input_fields = getJPanel_input();
         backgroundWithKeyboard.add(input_fields, BorderLayout.NORTH);
 
+        // Button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        buttonPanel.setOpaque(false);
+
+        // Create and add buttons
+        JButton submitButton = new JButton("Submit");
+        JButton backButton = new JButton("Back");
+
+        // Style buttons
+        Styles.getStyleButton(submitButton);
+        Styles.getStyleButton(backButton);
+
+        // Add action listeners later
+
+        buttonPanel.add(backButton);
+        buttonPanel.add(submitButton);
+
+        backgroundWithKeyboard.add(buttonPanel, BorderLayout.SOUTH);
+
         // Add to this main panel
         this.add(backgroundWithKeyboard, BorderLayout.CENTER);
     }
 
-    private static JPanel getJPanel_input() {
+    private JPanel getJPanel_input() {
         JPanel input_fields = new JPanel(new GridLayout(5, 1, 10, 10));
         input_fields.setOpaque(false);
         input_fields.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -28,10 +47,10 @@ public class playersInputScreen extends JPanel implements ActionListener {
         inputNames.setFont(font);
 
         JLabel player1_label = new JLabel("Player 1:");
-        JTextField playerName1_field = getJTextField();
+        JTextField playerName1_field = Styles.getJTextFieldStyle();
 
         JLabel player2_label = new JLabel("Player 2:");
-        JTextField playerName2_field = getJTextField();
+        JTextField playerName2_field = Styles.getJTextFieldStyle();
 
         input_fields.add(inputNames);
         input_fields.add(player1_label);
@@ -54,6 +73,6 @@ public class playersInputScreen extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Implement logic later
+
     }
 }
