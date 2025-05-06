@@ -8,7 +8,7 @@ public class StartPanel extends JPanel implements ActionListener{
     PlayButton exitButton;
     CardLayout cardLayout= new CardLayout();
     JPanel container= new JPanel();
-    StartPanel(int WIDTH, int HEIGHT,ImageIcon backgroundImg, JPanel container,CardLayout cardLayout){
+    StartPanel(int WIDTH, int HEIGHT,ImageIcon backgroundImg, JPanel container, CardLayout cardLayout){
 
         JLabel startPanelBG= new JLabel(backgroundImg);
 
@@ -19,22 +19,24 @@ public class StartPanel extends JPanel implements ActionListener{
         this.cardLayout= cardLayout;
         this.container= container;
 
+        String playExitText = "Exit";
+        int exitButtonX = (WIDTH / 2) + 20;;
+        this.exitButton = new PlayButton(playExitText, exitButtonX, playButtonY, buttonWidth, buttonHeight, container, cardLayout);
+        this.exitButton.addActionListener(this);
+        Styles.getStyleButton(this.exitButton);
+
         // Sets up the PLAY button
         String playButtonText = "PLAY";
         int playButtonX = (WIDTH/2) -(buttonWidth + 20);
         this.playButton = new PlayButton(playButtonText, playButtonX, playButtonY, buttonWidth, buttonHeight, container, cardLayout);
         this.playButton.addActionListener(this);
-
-        String playExitText = "Exit";
-        int exitButtonX = (WIDTH / 2) + 20;;
-        this.exitButton = new PlayButton(playExitText, exitButtonX, playButtonY, buttonWidth, buttonHeight, container, cardLayout);
-        this.exitButton.addActionListener(this);
+        Styles.getStyleButton(this.playButton);
 
         this.setLayout(new BorderLayout());
         this.add(startPanelBG);
         startPanelBG.setLayout(null);
-        startPanelBG.add(this.playButton);
         startPanelBG.add(this.exitButton);
+        startPanelBG.add(this.playButton);
 
     }
 
