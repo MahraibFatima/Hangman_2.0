@@ -6,8 +6,8 @@ import javax.swing.*;
 public class StartPanel extends JPanel implements ActionListener{
     PlayButton playButton;
     PlayButton exitButton;
-    CardLayout cardLayout= new CardLayout();
-    JPanel container= new JPanel();
+    CardLayout cardLayout;
+    JPanel container;
     StartPanel(int WIDTH, int HEIGHT,ImageIcon backgroundImg, JPanel container, CardLayout cardLayout){
 
         JLabel startPanelBG= new JLabel(backgroundImg);
