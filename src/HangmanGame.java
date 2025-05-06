@@ -66,7 +66,7 @@ public class HangmanGame extends JPanel implements ActionListener {
         guessWord_label.setFont(font);
 
 
-        JTextField guessWord_field = TextFieldStyle.getJTextField();
+        JTextField guessWord_field = Styles.getJTextFieldStyle();
 
         guessWord_panel.add(guessWord_label);
         guessWord_panel.add(guessWord_field);
