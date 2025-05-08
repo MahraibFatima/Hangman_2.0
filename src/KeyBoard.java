@@ -39,18 +39,18 @@ public class KeyBoard {
         }
         keyboardPanel.add(row3, gbc);
     }
-}
-class KeyBoardButtons extends JButton {
-    private final char value;
+    public static class KeyBoardButtons extends JButton {
+        private final char value;
 
-    public KeyBoardButtons(char value) {
-        this.value = value;
+        public KeyBoardButtons(char value) {
+            this.value = value;
 
-        this.setFocusable(false);
-        this.setText(String.valueOf(this.value).toUpperCase());
-    }
+            this.setFocusable(false);
+            this.setText(String.valueOf(this.value).toUpperCase());
+        }
 
-    public char getValue() {
-        return this.value;
+        public char getValue() {
+            return this.value;
+        }
     }
 }
