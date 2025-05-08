@@ -5,13 +5,9 @@ public class KeyBoard extends JButton {
 
     private final KeyBoardButtons[] buttons = new KeyBoardButtons[26];
 
-    public KeyBoard() {
-
-    }
-
-    public void displayButtons(JPanel keyboardPanel) {
-        keyboardPanel.setLayout(new BoxLayout(keyboardPanel, BoxLayout.Y_AXIS));
-        keyboardPanel.setOpaque(false); // let background show through
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(2, 2, 2, 2); // Reduced padding between buttons
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Row 1: Q - P
         JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
