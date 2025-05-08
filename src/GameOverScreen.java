@@ -34,7 +34,7 @@ public class GameOverScreen extends JPanel implements ActionListener {
         JLabel scoreLabel = new JLabel("Your Score is:", SwingConstants.CENTER);
         scoreLabel.setFont(new Font("Courier", Font.PLAIN, 16));
 
-        PlayButton scoreValue = new PlayButton(String.valueOf(score), -(buttonWidth + 20), HEIGHT - (buttonHeight * 3), buttonWidth, buttonHeight, container, cardLayout);
+        Buttons.PlayButton scoreValue = new Buttons.PlayButton(String.valueOf(score), -(buttonWidth + 20), HEIGHT - (buttonHeight * 3), buttonWidth, buttonHeight, container, cardLayout);
         scoreValue.setVerticalAlignment(SwingConstants.CENTER);
         scoreValue.setFont(new Font("Courier", Font.BOLD, 18));
         scoreValue.setForeground(Color.BLACK);
