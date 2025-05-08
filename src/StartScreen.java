@@ -3,12 +3,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class StartPanel extends JPanel implements ActionListener{
+public class StartScreen extends JPanel implements ActionListener{
     PlayButton playButton;
     PlayButton exitButton;
     CardLayout cardLayout;
     JPanel container;
-    StartPanel(int WIDTH, int HEIGHT,ImageIcon backgroundImg, JPanel container, CardLayout cardLayout){
+    StartScreen(int WIDTH, int HEIGHT,ImageIcon backgroundImg, JPanel container, CardLayout cardLayout){
 
         JLabel startPanelBG= new JLabel(backgroundImg);
 

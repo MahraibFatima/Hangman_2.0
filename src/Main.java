@@ -27,20 +27,20 @@ public class Main {
         screen.add(container);
 
         //start screen
-        StartPanel startPanel = new StartPanel(WIDTH, HEIGHT, hangman_screen, container, cardLayout);
-        container.add(startPanel, "1");
+        StartScreen startScreen = new StartScreen(WIDTH, HEIGHT, hangman_screen, container, cardLayout);
+        container.add(startScreen, "1");
 
         //players input screen
         playersInputScreen playersInput = new playersInputScreen(chalkBoard, container, cardLayout);
         container.add(playersInput, "2");
 
-        //Hangman main game screen
-        HangmanGame hangman= new HangmanGame(chalkBoard);
-        container.add(hangman, "3");
+//        //Hangman main game screen
+//        HangmanGame hangman= new HangmanGame(chalkBoard);
+//        container.add(hangman, "3");
 
         //game over screen
-        GameOverScreen gameOver= new GameOverScreen(hangman_without_text, container, cardLayout, finalScore);
-        container.add(gameOver, "4");
+//        GameOverScreen gameOver= new GameOverScreen(hangman_without_text, container, cardLayout, finalScore);
+//        container.add(gameOver, "4");
 
 
         cardLayout.show(container, "1");
