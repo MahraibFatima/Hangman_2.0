@@ -2,21 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Background {
-    public static JPanel setBgWithKeyBoard(ImageIcon backgroundImg) {
-        JPanel backgroundWithKeyboard = new BackgroundPanel(backgroundImg.getImage());
-        backgroundWithKeyboard.setLayout(new BorderLayout());
-
-        JPanel keyboardPanel = new JPanel();
-        keyboardPanel.setOpaque(false);
-
-        KeyBoard keyBoard = new KeyBoard();
-        keyBoard.displayButtons(keyboardPanel);
-
-        backgroundWithKeyboard.add(keyboardPanel, BorderLayout.SOUTH);
-        return backgroundWithKeyboard;
+    public static JPanel setBackgroundPanel(ImageIcon bgImg){
+        JPanel background = new BackgroundPanel(bgImg.getImage());
+        background.setLayout(new BorderLayout());
+        return background;
     }
 
-    static class BackgroundPanel extends JPanel {
+    public static class BackgroundPanel extends JPanel {
         private final Image background;
 
         public BackgroundPanel(Image background) {
