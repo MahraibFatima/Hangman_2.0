@@ -8,22 +8,16 @@ public class Buttons extends JButton {
         this.setText(text);
         this.setFocusable(false);
     }
+    public static class PlayButton extends Buttons {
 
-}
-class ExitButton extends Button {
+        public PlayButton(String text, int x, int y, int width, int height, JPanel container, CardLayout cardLayout) {
+            super(text, x, y, width, height);
+        }
 
-    public ExitButton(String text, int x, int y, int width, int height) {
-        super();
     }
-
 }
-class PlayButton extends Buttons {
 
-    public PlayButton(String text, int x, int y, int width, int height, JPanel container, CardLayout cardLayout) {
-        super(text, x, y, width, height);
-    }
 
-}
 
 
 
