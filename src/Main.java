@@ -34,13 +34,15 @@ public class Main {
         playersInputScreen playersInput = new playersInputScreen(chalkBoard, container, cardLayout);
         container.add(playersInput, "2");
 
-//        //Hangman main game screen
-//        HangmanGame hangman= new HangmanGame(chalkBoard);
-//        container.add(hangman, "3");
+        GuessWordScreen guessWordScreen= new GuessWordScreen(chalkBoard, container, cardLayout);
+        container.add(guessWordScreen, "3");
 
+        //Hangman main game screen
+        HangmanGame hangman= new HangmanGame(chalkBoard);
+        container.add(hangman, "4");
         //game over screen
 //        GameOverScreen gameOver= new GameOverScreen(hangman_without_text, container, cardLayout, finalScore);
-//        container.add(gameOver, "4");
+//        container.add(gameOver, "5");
 
 
         cardLayout.show(container, "1");
