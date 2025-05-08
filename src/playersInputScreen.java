@@ -21,7 +21,12 @@ public class playersInputScreen extends JPanel implements ActionListener {
         JPanel input_fields = getJPanel_input();
         backgroundWithKeyboard.add(input_fields, BorderLayout.NORTH);
 
-        // Button panel
+        // Keyboard in the center
+        JPanel keyboardPanel = new JPanel();
+        KeyBoard.displayButtons(keyboardPanel);
+        contentPanel.add(keyboardPanel, BorderLayout.CENTER);
+
+        // Button panel at the bottom
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.setOpaque(false);
 
