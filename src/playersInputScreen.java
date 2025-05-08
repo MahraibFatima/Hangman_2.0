@@ -9,17 +9,22 @@ public class playersInputScreen extends JPanel implements ActionListener {
     JButton backButton;
     JPanel container;
     CardLayout cardLayout;
+
     public playersInputScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
         this.setLayout(new BorderLayout());
-        this.container= container;
-        this.cardLayout= cardLayout;
+        this.container = container;
+        this.cardLayout = cardLayout;
 
         // Background panel setup
-        JPanel backgroundWithKeyboard = Background.setBgWithKeyBoard(backgroundImg);
+        JPanel backgroundWithKeyboard = Background.setBackgroundPanel(backgroundImg);
 
-        // Input fields
+        // Main content panel (vertical arrangement)
+        JPanel contentPanel = new JPanel(new BorderLayout());
+        contentPanel.setOpaque(false);
+
+        // Input fields at the top
         JPanel input_fields = getJPanel_input();
-        backgroundWithKeyboard.add(input_fields, BorderLayout.NORTH);
+        contentPanel.add(input_fields, BorderLayout.NORTH);
 
         // Keyboard in the center
         JPanel keyboardPanel = new JPanel();
@@ -30,24 +35,22 @@ public class playersInputScreen extends JPanel implements ActionListener {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.setOpaque(false);
 
-        // Create and add buttons
         this.submitButton = new JButton("Submit");
         this.backButton = new JButton("Back");
 
-        // Style buttons
         Styles.getStyleButton(submitButton);
         Styles.getStyleButton(backButton);
-
-        // Add action listeners later
 
         buttonPanel.add(backButton);
         buttonPanel.add(submitButton);
 
         submitButton.addActionListener(this);
         backButton.addActionListener(this);
-        backgroundWithKeyboard.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Add to this main panel
+        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Add to main panel
+        backgroundWithKeyboard.add(contentPanel, BorderLayout.CENTER);
         this.add(backgroundWithKeyboard, BorderLayout.CENTER);
     }
 
