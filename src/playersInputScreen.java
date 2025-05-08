@@ -18,7 +18,7 @@ public class playersInputScreen extends JPanel implements ActionListener {
         // Background panel setup
         JPanel backgroundWithKeyboard = Background.setBackgroundPanel(backgroundImg);
 
-        // Main content panel (vertical arrangement)
+        // Main content panel
         JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.setOpaque(false);
 
