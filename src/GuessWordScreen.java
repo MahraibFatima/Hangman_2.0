@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GuessWordScreen extends JPanel implements ActionListener {
+public class GuessWordScreen extends JPanel implements ActionListener, KeyListener {
     JTextField guessWord_field;
     JButton submitButton;
     JButton backButton;
@@ -55,14 +55,19 @@ public class GuessWordScreen extends JPanel implements ActionListener {
         inputNames.setFont(font);
 
         this.guessWord_field = Styles.getJTextFieldStyle();
-
+        guessWord_field.addKeyListener(this);
 
         input_fields.add(inputNames);
         input_fields.add(guessWord_field);
 
         return input_fields;
     }
-
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            submitButton.doClick();
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
@@ -85,4 +90,10 @@ public class GuessWordScreen extends JPanel implements ActionListener {
             }
         }
     }
+    // unused
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
 }

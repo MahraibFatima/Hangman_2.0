@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class playersInputScreen extends JPanel implements ActionListener {
+public class playersInputScreen extends JPanel implements ActionListener, KeyListener{
     JTextField playerName1_field;
     JTextField playerName2_field;
     JButton submitButton;
@@ -65,10 +65,11 @@ public class playersInputScreen extends JPanel implements ActionListener {
 
         JLabel player1_label = new JLabel("Player 1:");
         this.playerName1_field = Styles.getJTextFieldStyle();
-
+        playerName1_field.addKeyListener(this);
 
         JLabel player2_label = new JLabel("Player 2:");
         this.playerName2_field = Styles.getJTextFieldStyle();
+        playerName2_field.addKeyListener(this);
 
         input_fields.add(inputNames);
         input_fields.add(player1_label);
@@ -77,6 +78,12 @@ public class playersInputScreen extends JPanel implements ActionListener {
         input_fields.add(playerName2_field);
 
         return input_fields;
+    }
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            submitButton.doClick();
+        }
     }
 
     @Override
@@ -89,7 +96,6 @@ public class playersInputScreen extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Please enter names for both players",
                         "Input Error", JOptionPane.WARNING_MESSAGE);
             } else {
-                //player names storage pending
                 if (this.cardLayout != null && this.container != null) {
                     cardLayout.show(container, "3"); // Switch to game screen
                 }
@@ -102,4 +108,11 @@ public class playersInputScreen extends JPanel implements ActionListener {
             }
         }
     }
+    // unused
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
 }
