@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class playersInputScreen extends JPanel implements ActionListener, KeyListener, KeyboardListener {
+public class PlayersInputScreen extends JPanel implements ActionListener, KeyListener, KeyboardListener {
     private JTextField playerName1_field;
     private JTextField playerName2_field;
     private final JButton submitButton;
@@ -13,7 +13,7 @@ public class playersInputScreen extends JPanel implements ActionListener, KeyLis
     private final CardLayout cardLayout;
     private Map<Character, KeyBoard.KeyBoardButtons> keyboardButtonsMap = new HashMap<>();
 
-    public playersInputScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
+    public PlayersInputScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
         this.setLayout(new BorderLayout());
         this.container = container;
         this.cardLayout = cardLayout;

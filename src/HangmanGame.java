@@ -11,14 +11,15 @@ public class HangmanGame extends JPanel implements ActionListener, KeyboardListe
     private static JTextField guessWordField;
     private static JLabel imageLabel;
     private final List<JButton> keyboardButtons = new ArrayList<>();
-    private final String secretWord = "JAVA"; // Example word - will load this dynamically
+    private String secretWord = "JAVA"; // Example word - will load this dynamically
     private StringBuilder currentGuess = new StringBuilder();
     private int remainingGuesses = 6;
     private final ImageIcon[] hangmanImages = new ImageIcon[7];
 
-    public HangmanGame(ImageIcon backgroundImg) {
+    public HangmanGame(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
         this.setLayout(new BorderLayout());
-
+        GameState gameState = (GameState) container.getClientProperty("gameState");
+        this.secretWord = gameState.getSecretWord();
         // Initialize hangman images
         for (int i = 0; i <= 6; i++) {
             hangmanImages[i] = new ImageIcon("img/Gallows" + i + ".gif");

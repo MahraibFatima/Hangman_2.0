@@ -3,12 +3,6 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-//public class KeyBoard {
-//    public static void displayButtons(JPanel keyboardPanel, KeyboardListener listener) {
-//        // ... existing code ...
-//        listener.setKeyboardButtonsMap(buttonsMap);
-//    }
-//}
 public class KeyBoard {
     private static Map<Character, KeyBoardButtons> buttonsMap = new HashMap<>();
 

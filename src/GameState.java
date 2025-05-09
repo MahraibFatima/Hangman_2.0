@@ -3,7 +3,7 @@ import java.io.Serializable;
 public class GameState implements Serializable {
     private String player1;
     private String player2;
-    private String secretWord;
+    private String secretWord= "JAVA";
     private int currentRound = 1;
     private int player1Score = 0;
     private int player2Score = 0;
