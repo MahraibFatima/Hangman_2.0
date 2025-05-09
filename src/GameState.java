@@ -1,27 +1,29 @@
 import java.io.Serializable;
 
 public class GameState implements Serializable {
-    private String player1;
-    private String player2;
+    private static String player1="";
+    private static String player2="";
     private String secretWord= "JAVA";
     private int currentRound = 1;
     private int player1Score = 0;
     private int player2Score = 0;
 
-    public String getPlayer1() {
+    public static String getPlayer1() {
+        System.out.println("getter called");
         return player1;
     }
 
-    public void setPlayer1(String player1) {
-        this.player1 = player1;
+    public static void setPlayer1(String player1) {
+        System.out.println("setter called");
+        GameState.player1 = player1;
     }
 
-    public String getPlayer2() {
+    public static String getPlayer2() {
         return player2;
     }
 
-    public void setPlayer2(String player2) {
-        this.player2 = player2;
+    public static void setPlayer2(String player2) {
+        GameState.player2 = player2;
     }
 
     public String getSecretWord() {

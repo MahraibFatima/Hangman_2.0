@@ -124,6 +124,14 @@ public class PlayersInputScreen extends JPanel implements ActionListener, KeyLis
                 JOptionPane.showMessageDialog(this, "Please enter names for both players",
                         "Input Error", JOptionPane.WARNING_MESSAGE);
             } else {
+
+                // Store the map in the container for the next screen
+//                container.putClientProperty();
+                GameState.setPlayer1(player1);
+                GameState.setPlayer2(player2);
+                System.out.println(player1);
+                System.out.println(player2);
+
                 if (this.cardLayout != null && this.container != null) {
                     cardLayout.show(container, "3"); // Switch to game screen
                 }

@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Map;
 import javax.swing.*;
 
 public class GuessWordScreen extends JPanel implements ActionListener, KeyListener {
@@ -7,6 +8,8 @@ public class GuessWordScreen extends JPanel implements ActionListener, KeyListen
     JButton submitButton;
     JButton backButton;
     JPanel container;
+    String player1Name;
+    String player2Name;
     CardLayout cardLayout;
     public GuessWordScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
         this.setLayout(new BorderLayout());
@@ -33,7 +36,11 @@ public class GuessWordScreen extends JPanel implements ActionListener, KeyListen
         Styles.getStyleButton(backButton);
 
         // Add action listeners later
+//        Map<String, String> playerNames = (Map<String, String>) container.getClientProperty("playerNames");
 
+        this.player1Name = GameState.getPlayer1();
+        this.player2Name = GameState.getPlayer2();
+        System.out.println(player1Name + " " + player2Name);
         buttonPanel.add(backButton);
         buttonPanel.add(submitButton);
 
@@ -50,7 +57,8 @@ public class GuessWordScreen extends JPanel implements ActionListener, KeyListen
         input_fields.setOpaque(false);
         input_fields.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel inputNames = new JLabel("Enter guess word", SwingConstants.CENTER);
+        String label= player1Name + " enter word for " + player2Name;
+        JLabel inputNames = new JLabel(label, SwingConstants.CENTER);
         Font font = new Font("Courier", Font.BOLD, 20);
         inputNames.setFont(font);
 
