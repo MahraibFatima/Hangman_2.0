@@ -11,7 +11,6 @@ import java.util.Map;
 //}
 public class KeyBoard {
     private static Map<Character, KeyBoardButtons> buttonsMap = new HashMap<>();
-    private Map<Character, KeyBoardButtons> keyboardButtonsMap;
 
     public static void displayButtons(JPanel keyboardPanel, KeyboardListener listener) {
         keyboardPanel.setLayout(new GridBagLayout());
@@ -32,6 +31,7 @@ public class KeyBoard {
             buttonsMap.put(Character.toUpperCase(c), button);
         }
         keyboardPanel.add(row1, gbc);
+
 
         // Row 2: A - L
         gbc.gridy = 1;
@@ -60,7 +60,9 @@ public class KeyBoard {
         keyboardPanel.add(row3, gbc);
 
         // Pass the buttons map to the parent screen
-        listener.setKeyboardButtonsMap(buttonsMap);
+        if (listener != null) {
+            listener.setKeyboardButtonsMap(buttonsMap);
+        }
     }
     public static class KeyBoardButtons extends JButton {
         private final char value;

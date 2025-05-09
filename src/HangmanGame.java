@@ -4,8 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class HangmanGame extends JPanel implements ActionListener {
+public class HangmanGame extends JPanel implements ActionListener, KeyboardListener {
     private static JButton chanceLeftButton;
     private static JTextField guessWordField;
     private static JLabel imageLabel;
@@ -15,47 +16,47 @@ public class HangmanGame extends JPanel implements ActionListener {
     private int remainingGuesses = 6;
     private final ImageIcon[] hangmanImages = new ImageIcon[7];
 
-        public HangmanGame(ImageIcon backgroundImg) {
-            this.setLayout(new BorderLayout());
+    public HangmanGame(ImageIcon backgroundImg) {
+        this.setLayout(new BorderLayout());
 
-            // Initialize hangman images
-            for (int i = 0; i <= 6; i++) {
-                hangmanImages[i] = new ImageIcon("img/Gallows" + i + ".gif");
-            }
+        // Initialize hangman images
+        for (int i = 0; i <= 6; i++) {
+            hangmanImages[i] = new ImageIcon("img/Gallows" + i + ".gif");
+        }
 
-            // Initialize current guess with underscores
-            currentGuess.append("_ ".repeat(secretWord.length()));
+        // Initialize current guess with underscores
+        currentGuess.append("_ ".repeat(secretWord.length()));
 
-            // Background panel with keyboard at SOUTH
-            JPanel background = Background.setBackgroundPanel(backgroundImg);
+        // Background panel with keyboard at SOUTH
+        JPanel background = Background.setBackgroundPanel(backgroundImg);
 
-            // Create center content
-            JPanel centerPanel = createCenterPanel();
-            background.add(centerPanel, BorderLayout.CENTER);
+        // Create center content
+        JPanel centerPanel = createCenterPanel();
+        background.add(centerPanel, BorderLayout.CENTER);
 
-            // Create keyboard panel
-            JPanel keyboardPanel = new JPanel();
-            keyboardPanel.setOpaque(false);
-            KeyBoard.displayButtons(keyboardPanel);
+        // Create keyboard panel
+        JPanel keyboardPanel = new JPanel();
+        keyboardPanel.setOpaque(false);
+        KeyBoard.displayButtons(keyboardPanel, this);
 
-            // Add action listeners to keyboard buttons
-            for (Component comp : keyboardPanel.getComponents()) {
-                if (comp instanceof JPanel) {
-                    for (Component button : ((JPanel)comp).getComponents()) {
-                        if (button instanceof JButton) {
-                            ((JButton)button).addActionListener(this);
-                            keyboardButtons.add((JButton)button);
-                        }
+        // Add action listeners to keyboard buttons
+        for (Component comp : keyboardPanel.getComponents()) {
+            if (comp instanceof JPanel) {
+                for (Component button : ((JPanel)comp).getComponents()) {
+                    if (button instanceof JButton) {
+                        ((JButton)button).addActionListener(this);
+                        keyboardButtons.add((JButton)button);
                     }
                 }
             }
-
-            background.add(keyboardPanel, BorderLayout.SOUTH);
-            this.add(background, BorderLayout.CENTER);
-
-            // Initialize game state
-            updateGameDisplay();
         }
+
+        background.add(keyboardPanel, BorderLayout.SOUTH);
+        this.add(background, BorderLayout.CENTER);
+
+        // Initialize game state
+        updateGameDisplay();
+    }
     private static JPanel chances_panel() {
         JPanel guessWord_panel = new JPanel(new GridLayout(8, 1, 10, 10));
         guessWord_panel.setOpaque(false);
@@ -102,30 +103,30 @@ public class HangmanGame extends JPanel implements ActionListener {
     }
 
     private JPanel createCenterPanel() {
-    // --- LEFT SIDE: Chances Left ---
-    JPanel leftPanel = new JPanel(new BorderLayout());
-    leftPanel.setOpaque(false);
-    leftPanel.add(chances_panel(), BorderLayout.CENTER);
+        // --- LEFT SIDE: Chances Left ---
+        JPanel leftPanel = new JPanel(new BorderLayout());
+        leftPanel.setOpaque(false);
+        leftPanel.add(chances_panel(), BorderLayout.CENTER);
 
-    // --- RIGHT SIDE: Image Panel ---
-    JPanel rightPanel = new JPanel(new BorderLayout());
-    rightPanel.setOpaque(false);
-    rightPanel.add(imageToEast(), BorderLayout.CENTER);
+        // --- RIGHT SIDE: Image Panel ---
+        JPanel rightPanel = new JPanel(new BorderLayout());
+        rightPanel.setOpaque(false);
+        rightPanel.add(imageToEast(), BorderLayout.CENTER);
 
-    // --- CENTER SIDE: guessWord Panel ---
-    JPanel centerPanel = new JPanel(new BorderLayout());
-    centerPanel.setOpaque(false);
-    centerPanel.add(guessWord_panel(), BorderLayout.CENTER);
+        // --- CENTER SIDE: guessWord Panel ---
+        JPanel centerPanel = new JPanel(new BorderLayout());
+        centerPanel.setOpaque(false);
+        centerPanel.add(guessWord_panel(), BorderLayout.CENTER);
 
-    // --- CENTER PANEL: Contains left and right ---
-    JPanel mainCenterPanel = new JPanel(new BorderLayout());
-    mainCenterPanel.setOpaque(false);
-    mainCenterPanel.add(leftPanel, BorderLayout.WEST);
-    mainCenterPanel.add(rightPanel, BorderLayout.EAST);
-    mainCenterPanel.add(centerPanel, BorderLayout.SOUTH);
+        // --- CENTER PANEL: Contains left and right ---
+        JPanel mainCenterPanel = new JPanel(new BorderLayout());
+        mainCenterPanel.setOpaque(false);
+        mainCenterPanel.add(leftPanel, BorderLayout.WEST);
+        mainCenterPanel.add(rightPanel, BorderLayout.EAST);
+        mainCenterPanel.add(centerPanel, BorderLayout.SOUTH);
 
-    return mainCenterPanel;
-}
+        return mainCenterPanel;
+    }
 
     private void processGuess(char guessedLetter) {
         boolean correctGuess = false;
@@ -207,5 +208,8 @@ public class HangmanGame extends JPanel implements ActionListener {
             // Process the guess
             processGuess(letter.charAt(0));
         }
+    }
+    @Override
+    public void setKeyboardButtonsMap(Map<Character, KeyBoard.KeyBoardButtons> map) {
     }
 }
