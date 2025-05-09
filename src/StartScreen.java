@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class StartScreen extends JPanel implements ActionListener{
+public class StartScreen extends JPanel implements ActionListener, KeyListener{
     Buttons.PlayButton playButton;
     Buttons.PlayButton exitButton;
     CardLayout cardLayout;
@@ -16,6 +16,10 @@ public class StartScreen extends JPanel implements ActionListener{
       int buttonHeight = 50;
       this.cardLayout= cardLayout;
       this.container= container;
+
+      this.setFocusable(true);
+      this.requestFocusInWindow();
+      this.addKeyListener(this); // Add key listener to the panel itself
 
       exitButton = new Buttons.PlayButton("Exit", 0, 0, buttonWidth, buttonHeight, container, cardLayout);
       this.exitButton.addActionListener(this);
@@ -45,9 +49,11 @@ public class StartScreen extends JPanel implements ActionListener{
       this.add(startPanelBG, BorderLayout.CENTER);
 
     }
-
     @Override
-    protected void paintComponent(Graphics g) {
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            playButton.doClick();
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -65,6 +71,16 @@ public class StartScreen extends JPanel implements ActionListener{
                 window.dispose(); // Close the application
             }
         }
+    }
+    // unused
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    @Override
+    protected void paintComponent(Graphics g) {
     }
 
 }
