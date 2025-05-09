@@ -27,7 +27,7 @@ public class Main {
         screen.add(container);
 
         //start screen
-        StartScreen startScreen = new StartScreen(WIDTH, HEIGHT, hangman_screen, container, cardLayout);
+        StartScreen startScreen = new StartScreen(hangman_screen, container, cardLayout);
         container.add(startScreen, "1");
 
         //players input screen

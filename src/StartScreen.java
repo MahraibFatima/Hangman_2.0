@@ -8,35 +8,41 @@ public class StartScreen extends JPanel implements ActionListener{
     Buttons.PlayButton exitButton;
     CardLayout cardLayout;
     JPanel container;
-    StartScreen(int WIDTH, int HEIGHT,ImageIcon backgroundImg, JPanel container, CardLayout cardLayout){
+  public StartScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout){
 
-        JLabel startPanelBG= new JLabel(backgroundImg);
+      JLabel startPanelBG= new JLabel(backgroundImg);
+      startPanelBG.setLayout(new BorderLayout());
+      int buttonWidth = 100;
+      int buttonHeight = 50;
+      this.cardLayout= cardLayout;
+      this.container= container;
 
-        // Sets up the button dimensions
-        int buttonWidth = 100;
-        int buttonHeight = 50;
-        int playButtonY = HEIGHT - (buttonHeight * 3);
-        this.cardLayout= cardLayout;
-        this.container= container;
+      exitButton = new Buttons.PlayButton("Exit", 0, 0, buttonWidth, buttonHeight, container, cardLayout);
+      this.exitButton.addActionListener(this);
+      Styles.getStyleButton(this.exitButton);
 
-        String playExitText = "Exit";
-        int exitButtonX = (WIDTH / 2) + 20;;
-        exitButton = new Buttons.PlayButton(playExitText, exitButtonX, playButtonY, buttonWidth, buttonHeight, container, cardLayout);
-        this.exitButton.addActionListener(this);
-        Styles.getStyleButton(this.exitButton);
+      this.playButton = new Buttons.PlayButton("PLAY",0, 0, buttonWidth, buttonHeight, container, cardLayout);
+      this.playButton.addActionListener(this);
+      Styles.getStyleButton(this.playButton);
 
-        // Sets up the PLAY button
-        String playButtonText = "PLAY";
-        int playButtonX = (WIDTH/2) -(buttonWidth + 20);
-        this.playButton = new Buttons.PlayButton(playButtonText, playButtonX, playButtonY, buttonWidth, buttonHeight, container, cardLayout);
-        this.playButton.addActionListener(this);
-        Styles.getStyleButton(this.playButton);
+      JPanel buttonPanel = new JPanel(new BorderLayout());
+      buttonPanel.setOpaque(false);
+      buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
 
-        this.setLayout(new BorderLayout());
-        this.add(startPanelBG);
-        startPanelBG.setLayout(null);
-        startPanelBG.add(this.exitButton);
-        startPanelBG.add(this.playButton);
+      JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 0));
+      leftPanel.setOpaque(false);
+      leftPanel.add(exitButton);
+
+      JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 0));
+      rightPanel.setOpaque(false);
+      rightPanel.add(playButton);
+
+      buttonPanel.add(leftPanel, BorderLayout.WEST);
+      buttonPanel.add(rightPanel, BorderLayout.EAST);
+
+      startPanelBG.add(buttonPanel, BorderLayout.SOUTH);
+      this.setLayout(new BorderLayout());
+      this.add(startPanelBG, BorderLayout.CENTER);
 
     }
 
