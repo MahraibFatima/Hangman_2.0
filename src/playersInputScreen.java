@@ -1,14 +1,17 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
+import java.util.HashMap;
+import java.util.Map;
 
-public class playersInputScreen extends JPanel implements ActionListener, KeyListener{
-    JTextField playerName1_field;
-    JTextField playerName2_field;
-    JButton submitButton;
-    JButton backButton;
-    JPanel container;
-    CardLayout cardLayout;
+public class playersInputScreen extends JPanel implements ActionListener, KeyListener, KeyboardListener {
+    private JTextField playerName1_field;
+    private JTextField playerName2_field;
+    private final JButton submitButton;
+    private final JButton backButton;
+    private final JPanel container;
+    private final CardLayout cardLayout;
+    private Map<Character, KeyBoard.KeyBoardButtons> keyboardButtonsMap = new HashMap<>();
 
     public playersInputScreen(ImageIcon backgroundImg, JPanel container, CardLayout cardLayout) {
         this.setLayout(new BorderLayout());
@@ -28,7 +31,7 @@ public class playersInputScreen extends JPanel implements ActionListener, KeyLis
 
         // Keyboard in the center
         JPanel keyboardPanel = new JPanel();
-        KeyBoard.displayButtons(keyboardPanel);
+        KeyBoard.displayButtons(keyboardPanel, this);  // Pass reference to this screen
         contentPanel.add(keyboardPanel, BorderLayout.CENTER);
 
         // Button panel at the bottom
@@ -52,6 +55,14 @@ public class playersInputScreen extends JPanel implements ActionListener, KeyLis
         // Add to main panel
         backgroundWithKeyboard.add(contentPanel, BorderLayout.CENTER);
         this.add(backgroundWithKeyboard, BorderLayout.CENTER);
+
+        // Make sure panel can receive focus
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+    }
+
+    public void setKeyboardButtonsMap(Map<Character, KeyBoard.KeyBoardButtons> map) {
+        this.keyboardButtonsMap = map;
     }
 
     private JPanel getJPanel_input() {
@@ -79,10 +90,27 @@ public class playersInputScreen extends JPanel implements ActionListener, KeyLis
 
         return input_fields;
     }
+
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        char keyChar = e.getKeyChar();
+        if (keyChar == KeyEvent.VK_ENTER) {
             submitButton.doClick();
+        } else if (Character.isLetter(keyChar)) {
+            highlightKey(keyChar);
+        }
+    }
+
+    public void highlightKey(char key) {
+        KeyBoard.KeyBoardButtons button = keyboardButtonsMap.get(key);
+        if (button != null) {
+            button.highlight();
+            Timer timer = new Timer(200, evt -> {
+                button.unhighlight();
+                ((Timer)evt.getSource()).stop();
+            });
+            timer.setRepeats(false);
+            timer.start();
         }
     }
 
@@ -102,17 +130,13 @@ public class playersInputScreen extends JPanel implements ActionListener, KeyLis
             }
         }
         else if (e.getSource() == backButton) {
-            // Return to previous screen
             if (this.cardLayout != null && this.container != null) {
                 cardLayout.show(container, "1"); // Switch back to start screen
             }
         }
     }
-    // unused
-    @Override
-    public void keyReleased(KeyEvent e) {}
 
-    @Override
-    public void keyTyped(KeyEvent e) {}
-
+    // Unused KeyListener methods
+    @Override public void keyReleased(KeyEvent e) {}
+    @Override public void keyTyped(KeyEvent e) {}
 }
